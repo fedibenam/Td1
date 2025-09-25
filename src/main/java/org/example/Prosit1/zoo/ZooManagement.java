@@ -1,4 +1,4 @@
-package org.example.zoo;
+package org.example.Prosit1.zoo;
 
 import java.util.Scanner;
 
