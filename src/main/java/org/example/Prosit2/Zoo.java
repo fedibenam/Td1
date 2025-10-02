@@ -18,5 +18,4 @@ public class Zoo {
         return "Zoo{name='" + name + "', city='" + city + "', nbrCages=" + nbrCages +
                 ", animals=" + java.util.Arrays.toString(animals) + "}";
     }
-
 }
