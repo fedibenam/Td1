@@ -5,6 +5,10 @@ import org.example.Prosit2.Zoo;
 import org.example.Prosit1.zoo.ZooManagement;
 import org.example.Prosit3.Animal_3;
 import org.example.Prosit3.Zoo_3;
+import org.example.Prosit7.Animal_7;
+import org.example.Prosit7.InvalidAgeException;
+import org.example.Prosit7.ZooFullException;
+import org.example.Prosit7.Zoo_7;
 
 public class Main {
     public static void main(String[] args) {
@@ -40,7 +44,7 @@ public class Main {
 
         */
 
-        /*Prosit 3*/
+        /*Prosit 3
 
         Zoo_3 myZoo = new Zoo_3("Safari Park", "Paris", 25);
 
@@ -84,6 +88,44 @@ public class Main {
         Zoo_3 biggerZoo = Zoo_3.compareZoo(zooA, zooB);
         System.out.println("Zoo with more animals: " + biggerZoo.name);
 
+        */
+        /* Prosit 7: */
+        Zoo_7 zoo = new Zoo_7("Mini Zoo", "Paris", 3); // small capacity for testing
 
+        // 1) valid animal
+        Animal_7 valid = new Animal_7("FamilyValid", "NameValid", 2, false);
+        try {
+            Zoo_7.addAnimal(valid);
+            System.out.println("Adding valid animal: success");
+        } catch (InvalidAgeException | ZooFullException e) {
+            System.out.println("Adding valid animal: failed - " + e.getMessage());
+        }
+        System.out.println("Total animals after valid attempt: " + zoo.getAnimals().size());
+
+        // 2) invalid age
+        Animal_7 invalid = new Animal_7("FamilyInvalid", "NameInvalid", -1, false);
+        try {
+            Zoo_7.addAnimal(invalid);
+            System.out.println("Adding invalid-age animal: success");
+        } catch (InvalidAgeException | ZooFullException e) {
+            System.out.println("Adding invalid-age animal: failed - " + e.getMessage());
+        }
+        System.out.println("Total animals after invalid-age attempt: " + zoo.getAnimals().size());
+
+        // 3) add multiple animals until capacity is reached
+        for (int i = 0; i < 5; i++) {
+            Animal_7 a = new Animal_7("Family" + i, "Name" + i, i, false);
+            try {
+                Zoo_7.addAnimal(a);
+                System.out.println("Adding animal " + i + ": success");
+            } catch (InvalidAgeException | ZooFullException e) {
+                System.out.println("Adding animal " + i + ": failed - " + e.getMessage());
+            }
+            System.out.println("Total animals after attempt " + i + ": " + zoo.getAnimals().size());
+        }
+
+        System.out.println("Final zoo: " + zoo);
     }
 }
+
+
